@@ -1,6 +1,6 @@
 define(["Loader", "image_library/jobs/jobs", "HatDraw"], function (Loader, jobs, HatDraw) {
 	var WORDS = ["illustrator", "designer", "baseball player", "basketball player", "teacher", "soccer player", "doctor", "police officer", "florist", "game creator"];
-	var jloader = new Loader("../image_library/jobs/img/");
+	var jloader = new Loader("./image_library/jobs/img/");
 	var hints = [];
 	var entries = Object.entries(jobs);
 	entries.forEach(function (e) {

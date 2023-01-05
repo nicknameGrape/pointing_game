@@ -10,7 +10,7 @@ paths: {
 
 var loader, lloader;
 requirejs(["Loader"], function (Loader) {
-	loader = new Loader("../image_library/images/");
+	loader = new Loader("./image_library/images/");
 	lloader = new Loader("./modules/img/");
 });
 
