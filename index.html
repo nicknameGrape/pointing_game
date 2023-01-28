@@ -17,8 +17,15 @@
 			text-align: center;
 			background: yellow;
 		}
+		#instructions {
+			height: 10%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 		#modules {
-			height: 80%;
+			height: 50%;
 			width: 100%;
 			background: lavender;
 			display: flex;
@@ -27,6 +34,13 @@
 			justify-content: space-around;
 			row-gap: 5%;
 			column-gap: 5%;
+		}
+		#start {
+			height: 20%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		#game {
 			height: 100%;
@@ -87,7 +101,9 @@
 <body>
 	<div id="menu">
 		<div id="title"></div>
+		<div id="instructions"><div>Choose one or more sets of words, then press "start" below.</div></div>
 		<div id="modules"></div>
+		<div id="start">START</div>
 	</div>
 	<div id="game">
 		<div id="points">
@@ -95,7 +111,7 @@
 			<div id="total">0</div>
 			<div id="toAdd"></div>
 		</div>
-		<div id="hint"></div>
+		<div id="hint">Touch Here to Start</div>
 		<div id="buttons"></div>
 	</div>
 	<script data-main="./pointing_game_main.js" src="./js/require.js"></script>

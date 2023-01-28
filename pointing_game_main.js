@@ -25,6 +25,7 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 
 	function newQuiz() {
 		if (!countingDown) {
+			clearTimeout(againTimeout);
 			var module = modulesHd.drawOne().module;
 			console.log
 			quiz = module.hd.drawOne();
@@ -52,7 +53,8 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 
 	function resize() {
 		titleDiv.style.fontSize = titleDiv.offsetHeight*.8;
-		modulesDiv.style.fontSize = Math.min(modulesDiv.offsetHeight/modules.length*1.5, titleDiv.offsetHeight*.6);
+		modulesDiv.style.fontSize = Math.min(modulesDiv.offsetHeight/modules.length*2.5, titleDiv.offsetHeight*.6);
+		startDiv.style.fontSize = startDiv.offsetHeight*.6;
 		avgDiv.style.fontSize = avgDiv.offsetHeight*.2;
 		totalDiv.style.fontSize = totalDiv.offsetHeight*.85;
 		toAddDiv.style.fontSize = toAddDiv.offsetHeight*.85;
@@ -67,10 +69,14 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 				selectedTitles.push(toCheck[i].id);
 			}
 		}
-		modulesHd = new HatDraw(modules.filter(function (m) {
-			console.log(m);
+		var selectedModules = modules.filter(function (m) {
 			return selectedTitles.includes(m.title);
-		}));
+		})
+		selectedModules.forEach(function (m) {
+			console.log(m);
+			m.module.setup();
+		});
+		modulesHd = new HatDraw(selectedModules);
 		menuDiv.style.display = "none";
 		gameDiv.style.display = "block";
 		resize();
@@ -94,6 +100,9 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 				attempts += 1;
 				avgDiv.innerHTML = "<br>ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
 				countingDown = false;
+				againTimeout = setTimeout(function () {
+					hintDiv.innerHTML = "Again!";
+				}, 3000);
 			} else {
 				if (this.style.background !== "red") {
 					this.style.background = "red";
@@ -110,6 +119,9 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 					toAdd = 0;
 					toAddDiv.innerHTML = toAdd;
 					countingDown = false;
+					setTimeout(function () {
+						hintDiv.innerHTML = "Again!";
+					}, 3000);
 				}
 			}
 		}
@@ -121,7 +133,9 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 	var quiz;
 	var menuDiv  = document.getElementById("menu");
 	var titleDiv  = document.getElementById("title");
+	var instructionsDiv  = document.getElementById("instructions");
 	var modulesDiv  = document.getElementById("modules");
+	var startDiv  = document.getElementById("start");
 	var gameDiv  = document.getElementById("game");
 	var attemptsDiv = document.getElementById("attempts");
 	var avgDiv = document.getElementById("avg");
@@ -138,8 +152,9 @@ requirejs(["pointing_game/pointing_game_modules", "image_library/images", "HatDr
 	var animationRequest, startTime;
 	var wrong = document.createElement("audio");
 	var correct = document.createElement("audio");
+	var againTimeout;
 	titleDiv.innerHTML = "Pointing Game";
-	titleDiv.onclick = start;
+	startDiv.onclick = start;
 	modules.forEach(function (m) {
 		var unit = document.createElement("div");
 		var input = document.createElement("input");
