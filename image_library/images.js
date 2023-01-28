@@ -2511,7 +2511,6 @@ define(function () {
         "plural": "eggplants",
         "src": "eggplant_v_z6rrqq.png",
         "tags": [
-            "food",
             "vegetable",
             "round",
             "summer"
@@ -6750,7 +6749,6 @@ define(function () {
         "plural": "sweet potatos",
         "src": "sweet_potato_lhj277xg.png",
         "tags": [
-            "food",
             "vegetable",
             "sweet",
             "root"

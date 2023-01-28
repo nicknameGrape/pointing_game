@@ -20,14 +20,19 @@ define([
 	"pointing_game/modules/pointing_module_jobs",
 	"pointing_game/modules/pointing_module_countries",
 	"pointing_game/modules/pointing_module_buildings",
-	//"pointing_game/modules/pointing_module_categories",
+	"pointing_game/modules/pointing_module_categories",
 	"pointing_game/modules/pointing_module_zodiac",
 	"pointing_game/modules/pointing_module_vegetables",
 	"pointing_game/modules/pointing_module_colored_shapes",
 	"pointing_game/modules/pointing_module_school_events",
 	"pointing_game/modules/pointing_module_foods",
 	"pointing_game/modules/pointing_module_body_parts",
-	"pointing_game/modules/pointing_module_prices"
+	"pointing_game/modules/pointing_module_prices",
+	"pointing_game/modules/pointing_module_meibutsu",
+	"pointing_game/modules/pointing_module_school_rooms",
+	"pointing_game/modules/pointing_module_thousands",
+	"pointing_game/modules/pointing_module_adjectives_g3",
+	"pointing_game/modules/pointing_module_adjectives_g5"
 ], function (
 	m12,
 	m20,
@@ -50,14 +55,19 @@ define([
 	mJobs,
 	mCountries,
 	mBuildings,
-	//mCategories,
+	mCategories,
 	mZodiac,
 	mVegetables,
 	mColoredShapes,
 	mSchoolEvents,
 	mFoods,
 	mBodyParts,
-	mPrices
+	mPrices,
+	mMeibutsu,
+	mSchoolRooms,
+	mThousands,
+	mAdjectivesG3,
+	mAdjectivesG5
 ) {
 	return [
 		{"title": "Fruits", "module": mFruits},
@@ -66,11 +76,12 @@ define([
 		{"title": "Body Parts", "module": mBodyParts},
 		{"title": "Colors", "module": mColors},
 		{"title": "Colored Shapes", "module": mColoredShapes},
-		//{"title": "Categories", "module": mCategories},
+		{"title": "Categories", "module": mCategories},
 		{"title": "A-Z", "module": mAZ},
 		{"title": "a-z", "module": maz},
 		{"title": "1-12", "module": m12},
 		{"title": "1-20", "module": m20},
+		{"title": "100-9900", "module": mThousands},
 		{"title": "Prices", "module": mPrices},
 		{"title": "Weather", "module": mWeather},
 		{"title": "Days", "module": mDays},
@@ -88,6 +99,10 @@ define([
 		{"title": "Summer Vacation Plan", "module": mSummerVacationPlan},
 		{"title": "Family", "module": mFamily},
 		{"title": "Zodiac", "module": mZodiac},
-		{"title": "School Events", "module": mSchoolEvents}
+		{"title": "School Events", "module": mSchoolEvents},
+		{"title": "Famous Foods of Japan", "module": mMeibutsu},
+		{"title": "School Rooms", "module": mSchoolRooms},
+		{"title": "Adjectives G3", "module": mAdjectivesG3},
+		{"title": "Adjectives G5", "module": mAdjectivesG5}
 	];
 })

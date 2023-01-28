@@ -2,9 +2,20 @@ define(["image_library/images", "HatDraw", "pointing_game/PointingGameModule"], 
 	function setup() {
 		var CATS = ["fruit", "vegetable", "color", "food", "drink", "sport", "animal"];
 		var hints = [];
+		var AMBIGUOUS = [
+			"miso soup",
+			"salad",
+			"rice",
+			"nuts",
+			"jam",
+			"fruit",
+			"pie",
+			"pickles",
+			"pet"
+		];
 		CATS.forEach(function (w) {
 			var filtered = il.filter(function (o) {
-				return o.tags.includes(w);
+				return o.tags.includes(w) && !AMBIGUOUS.includes(o.text);
 			});
 			var choice = filtered[Math.floor(Math.random()*filtered.length)];
 			var img = loader.newImageAsset(choice.src);
