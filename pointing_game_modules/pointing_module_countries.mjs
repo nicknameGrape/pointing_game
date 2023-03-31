@@ -4,7 +4,7 @@ import flags from "../image_library/flags/flags.mjs";
 import PGM from "../PointingGameModule.mjs";
 function setup() {
 	var WORDS = ["us", "br", "gb", "fr", "de", "it", "jp", "kr", "ch", "in", "cn", "au", "eg", "ke"];
-	var cloader = new Loader("../image_library/flags/img/");
+	var cloader = new Loader("./image_library/flags/img/");
 	var hints = [];
 	//var entries = Object.entries(flags);
 	WORDS.forEach(function (e) {
