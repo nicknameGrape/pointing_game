@@ -220,6 +220,7 @@ backDiv.addEventListener('pointerdown', function (ev) {
 	console.log("backDiv tapped");
 	gameDiv.style.display = "none";
 	menuDiv.style.display = "block";
+	ev.stopPropagation();
 });
 Array.from(document.getElementsByClassName("invert")).forEach(function (el) {
 	el.addEventListener('pointerdown', function (ev) {
