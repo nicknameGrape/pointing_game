@@ -40,8 +40,8 @@ var modules = [
 	{"title": "Colors", "module": mColors},
 	{"title": "Colored Shapes", "module": mColoredShapes},
 	{"title": "Categories", "module": mCategories},
-	{"title": "A-Z", "module": mAZ},
-	{"title": "a-z", "module": maz},
+	{"title": "ABC -> ABC", "module": mAZ},
+	{"title": "abc -> ABC", "module": maz},
 	{"title": "1-12", "module": m12},
 	{"title": "1-20", "module": m20},
 	{"title": "100-9900", "module": mThousands},
@@ -65,7 +65,7 @@ var modules = [
 	{"title": "School Events", "module": mSchoolEvents},
 	{"title": "Famous Foods of Japan", "module": mMeibutsu},
 	{"title": "School Rooms", "module": mSchoolRooms},
-	{"title": "Adjectives G3", "module": mAdjectivesG3},
-	{"title": "Adjectives G5", "module": mAdjectivesG5}
+	{"title": "White Rabbit", "module": mAdjectivesG3},
+	{"title": "Opposites", "module": mAdjectivesG5}
 ];
 export default modules

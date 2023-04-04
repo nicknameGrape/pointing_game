@@ -1,117 +1,73 @@
 <html>
 <head>
-	<style>
-		body {
-			margin: 0;
-			touch-action: none;
-			font-family: sans-serif;
-		}
-		#menu {
-			display: block;
-			height: 100%;
-			width: 100%;
-		}
-		#title {
-			height: 20%;
-			width: 100%;
-			text-align: center;
-			background: yellow;
-		}
-		#instructions {
-			height: 10%;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		#modules {
-			height: 50%;
-			width: 100%;
-			background: lavender;
-			display: flex;
-			flex-wrap: wrap;
-			align-content: flex-start;
-			justify-content: space-around;
-			row-gap: 5%;
-			column-gap: 5%;
-		}
-		#start {
-			height: 20%;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		#game {
-			height: 100%;
-			width: 100%;
-			display: none;
-			flex-direction: column;
-		}
-		#points {
-			height: 20%;
-			width: 100%;
-			display: flex;
-			text-align: center;
-		}
-		#avg {
-			background: pink;
-			color: white;
-			height: 100%;
-			width: 20%;
-		}
-		#total {
-			background: purple;
-			color: white;
-			height: 100%;
-			width: 40%;
-		}
-		#toAdd {
-			color: purple;
-			height: 100%;
-			width: 40%;
-		}
-		#hint {
-			background: lavender;
-			height: 30%;
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		#buttons {
-			background: yellow;
-			height: 50%;
-			width: 100%;
-			display: grid;
-			grid-auto-rows: minmax(0px, auto);
-		}
-		label {
-			background: red;
-		}
-		.choice {
-			background: yellow;
-			height: 90%;
-			width: 90%;
-			object-fit: contain;
-			margin: auto;
-		}
-	</style>
+	<title>Pointing Game</title>
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<link rel="stylesheet" href="pointing_game_stylesheet.css">
 </head>
 <body>
 	<div id="menu">
-		<div id="title"></div>
-		<div id="instructions"><div>Choose one or more sets of words, then press "start" below.</div></div>
-		<div id="modules"></div>
+		<div id="top">
+			<a id="hub" href="https://nicknameGrape.github.io/smartboard/">
+				<div>Back to<br>Hub</div>
+			</a>
+			<div id="title"></div>
+		</div>
+		<div id="instructions"><span>Choose one or more sets of words, then press "start" below.</span></div>
+		<div id="modules">
+			<div class="set"  id="general">
+				<span class="setName">
+					General
+					<button class="invert">INVERT</button>
+				</span>
+				<div class="setItems"></div>
+			</div>
+			<div class="set"  id="lets_try_1">
+				<span class="setName">
+					Let's Try 1
+					<button class="invert">INVERT</button>
+				</span>
+				<div class="setItems"></div>
+			</div>
+			<div class="set"  id="lets_try_2">
+				<span class="setName">
+					Let's Try 2
+					<button class="invert">INVERT</button>
+				</span>
+				<div class="setItems"></div>
+			</div>
+			<div class="set"  id="junior_sunshine_5">
+				<span class="setName">
+					Junior Sunshine 5
+					<button class="invert">INVERT</button>
+				</span>
+				<span><emph>Coming Soon...</emph></span>
+			</div>
+			<div class="set"  id="junior_sunshine_6">
+				<span class="setName">
+					Junior Sunshine 6
+					<button class="invert">INVERT</button>
+				</span>
+				<span><emph>Coming Soon...</emph></span>
+			</div>
+		</div>
 		<div id="start">START</div>
 	</div>
 	<div id="game">
 		<div id="points">
-			<div id="avg"><br>ATTEMPTS: 0<br>AVG: 0</div>
-			<div id="total">0</div>
-			<div id="toAdd"></div>
+			<div id="back">Back to<br>Menu</div>
+			<div id="avg">
+				<span style="font-size:1.1em;font-weight:bold">ATTEMPTS:<br>AVG:</span>
+				<span style="font-size:.5em">(Tap to Reset)</span>
+			</div>
+			<div id="total">
+				<span style="font-size:.5em">Grand Total</span>
+				<span style="font-size:3em;font-weight:bold">0</span>
+			</div>
+			<div id="toAdd">
+				<span style="font-size:3em;font-weight:bold"></span>
+			</div>
 		</div>
-		<div id="hint">Touch Here to Start</div>
+		<div id="hint" style="font-size:2.8em">Tap Here to Start</div>
 		<div id="buttons"></div>
 	</div>
 	<script type="module" src="pointing_game_main.mjs"></script>

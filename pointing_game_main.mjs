@@ -7,7 +7,7 @@ function animateToAdd() {
 	var now = performance.now();
 	var elapsed = now  - startTime;
 	toAdd = Math.max(Math.floor(MAX_POINTS*Math.pow(.8, tries)*(1 - elapsed/(TIME_LIMIT*1000))), 100);
-	toAddDiv.innerHTML = toAdd;
+	toAddDiv.children[0].innerHTML = toAdd;
 	animationRequest = requestAnimationFrame(animateToAdd);
 }
 
@@ -31,32 +31,23 @@ function newQuiz() {
 		countingDown = true;
 		toAddDiv.style.color = ""
 		toAdd = 1000;
-		toAddDiv.innerHTML = toAdd;
+		toAddDiv.children[0].innerHTML = toAdd;
 		tries = 0;
 		startTime = performance.now();
 		animationRequest = requestAnimationFrame(animateToAdd);
-		resize();
 	}
-}
-
-function resize() {
-	titleDiv.style.fontSize = titleDiv.offsetHeight*.8;
-	modulesDiv.style.fontSize = Math.min(modulesDiv.offsetHeight/modules.length*2.5, titleDiv.offsetHeight*.6);
-	startDiv.style.fontSize = startDiv.offsetHeight*.6;
-	avgDiv.style.fontSize = avgDiv.offsetHeight*.2;
-	totalDiv.style.fontSize = totalDiv.offsetHeight*.85;
-	toAddDiv.style.fontSize = toAddDiv.offsetHeight*.85;
-	hintDiv.style.fontSize = hintDiv.offsetHeight*.5;
 }
 
 function start() {
 	var selectedTitles = [];
-	var toCheck = modulesDiv.getElementsByTagName("input");
+	//var toCheck = modulesDiv.getElementsByTagName("input");
+	var toCheck = Array.from(document.getElementsByTagName("input"));
 	for (let i=0; i<toCheck.length; i++) {
 		if (toCheck[i].checked) {
-			selectedTitles.push(toCheck[i].id);
+			selectedTitles.push(toCheck[i].mid);
 		}
 	}
+	console.log(selectedModules);
 	var selectedModules = modules.filter(function (m) {
 		return selectedTitles.includes(m.title);
 	})
@@ -67,7 +58,6 @@ function start() {
 	modulesHd = new HatDraw(selectedModules);
 	menuDiv.style.display = "none";
 	gameDiv.style.display = "block";
-	resize();
 }
 
 function onclick() {
@@ -82,11 +72,12 @@ function onclick() {
 			correct.play();
 			this.style.background = "lime";
 			toAddDiv.style.color = "lime"
-			toAddDiv.innerHTML = "+" + toAdd;
+			toAddDiv.children[0].innerHTML = "+" + toAdd;
 			total += toAdd;
-			totalDiv.innerHTML = total;
+			grandTotal += toAdd;
+			totalDiv.children[1].innerHTML = grandTotal;
 			attempts += 1;
-			avgDiv.innerHTML = "<br>ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
+			avgDiv.children[0].innerHTML = "ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
 			countingDown = false;
 			againTimeout = setTimeout(function () {
 				hintDiv.innerHTML = "Again!";
@@ -103,9 +94,9 @@ function onclick() {
 			if (tries === 3) {
 				cancelAnimationFrame(animationRequest);
 				attempts += 1;
-				avgDiv.innerHTML = "<br>ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
+				avgDiv.innerHTML = "ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
 				toAdd = 0;
-				toAddDiv.innerHTML = toAdd;
+				toAddDiv.children[0].innerHTML = toAdd;
 				countingDown = false;
 				setTimeout(function () {
 					hintDiv.innerHTML = "Again!";
@@ -116,18 +107,25 @@ function onclick() {
 }
 
 
-var loader = new Loader("./image_library/images/");
-var lloader = new Loader("./pointing_game_modules/img/");
 var TIME_LIMIT = 10;
 var MAX_POINTS = 1000;
+var GENERAL = ["Fruits", "Vegetables", "Foods", "Body Parts", "Colors", "ABC -> ABC", "abc -> ABC", "1-12", "1-20", "100-9900", "Weather", "Days", "Months", "Dates", "Stationery", "My Room", "Subjects", "Buildings", "Jobs", "Countries", "Opposites"];
+var LETS_TRY_1 = ["Greetings", "How are you?", "1-20", "Colors", "Categories", "ABC -> ABC", "Colored Shapes", "White Rabbit"];
+var LETS_TRY_2 = ["Greetings", "Weather", "Let's Play", "Days", "Time", "Study Time", "Stationery", "abc -> ABC", "Vegetables", "At the Market", "School Rooms"];
+var loader = new Loader("./image_library/images/");
+var lloader = new Loader("./pointing_game_modules/img/");
 var modulesHd;
 var quiz;
 var menuDiv  = document.getElementById("menu");
 var titleDiv  = document.getElementById("title");
 var instructionsDiv  = document.getElementById("instructions");
 var modulesDiv  = document.getElementById("modules");
+var generalDiv  = document.getElementById("general");
+var letsTry1Div  = document.getElementById("lets_try_1");
+var letsTry2Div  = document.getElementById("lets_try_2");
 var startDiv  = document.getElementById("start");
 var gameDiv  = document.getElementById("game");
+var backDiv  = document.getElementById("back");
 var attemptsDiv = document.getElementById("attempts");
 var avgDiv = document.getElementById("avg");
 var totalDiv  = document.getElementById("total");
@@ -139,6 +137,7 @@ var countingDown = false;
 var tries = 0;
 var attempts = 0;
 var total = 0;
+var grandTotal = 0;
 var toAdd;
 var animationRequest, startTime;
 var wrong = document.createElement("audio");
@@ -146,23 +145,95 @@ var correct = document.createElement("audio");
 var againTimeout;
 titleDiv.innerHTML = "Pointing Game";
 startDiv.onclick = start;
-modules.forEach(function (m) {
+GENERAL.sort(function (oa, ob) {
+	var titlea = oa.toUpperCase();
+	var titleb = ob.toUpperCase();
+	if (titlea < titleb) {
+		return -1;
+	}
+	if (titlea > titleb) {
+		return 1;
+	}
+	return 0;
+});
+//modules.forEach(function (m) {
+//	var unit = document.createElement("div");
+//	var input = document.createElement("input");
+//	var label = document.createElement("label");
+//	input.type = "checkbox";
+//	input.id = m.title;
+//	label.htmlFor = m.title;
+//	label.innerHTML = m.title;
+//	unit.appendChild(input);
+//	unit.appendChild(label);
+//	if (GENERAL.includes(m.title)) {
+//		generalDiv.children[1].appendChild(unit.cloneNode(true));
+//	}
+//});
+GENERAL.forEach(function (title) {
 	var unit = document.createElement("div");
 	var input = document.createElement("input");
 	var label = document.createElement("label");
 	input.type = "checkbox";
-	input.id = m.title;
-	label.htmlFor = m.title;
-	label.innerHTML = m.title;
-	modulesDiv.appendChild(unit);
+	input.id = "general_" + title;
+	input.mid = title;
+	label.htmlFor = "general_" + title;
+	label.innerHTML = title;
 	unit.appendChild(input);
 	unit.appendChild(label);
+	generalDiv.children[1].appendChild(unit);
+});
+LETS_TRY_1.forEach(function (title) {
+	if (modules.map(function (o) {return o.title;}).includes(title)) {
+		var unit = document.createElement("div");
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		input.type = "checkbox";
+		input.id = "lt1_" + title;
+		input.mid = title;
+		label.htmlFor = "lt1_" + title;
+		label.innerHTML = title;
+		unit.appendChild(input);
+		unit.appendChild(label);
+		letsTry1Div.children[1].appendChild(unit);
+	}
+});
+LETS_TRY_2.forEach(function (title) {
+	if (modules.map(function (o) {return o.title;}).includes(title)) {
+		var unit = document.createElement("div");
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		input.type = "checkbox";
+		input.id = "lt2_" + title;
+		input.mid = title;
+		label.htmlFor = "lt2_" + title;
+		label.innerHTML = title;
+		unit.appendChild(input);
+		unit.appendChild(label);
+		letsTry2Div.children[1].appendChild(unit);
+	}
 });
 wrong.src = "wrong.mp3";
 correct.src = "correct.mp3";
 document.addEventListener('contextmenu', event => event.preventDefault());
-window.addEventListener('resize', resize);
-resize();
+backDiv.addEventListener('pointerdown', function (ev) {
+	console.log("backDiv tapped");
+	gameDiv.style.display = "none";
+	menuDiv.style.display = "block";
+});
+Array.from(document.getElementsByClassName("invert")).forEach(function (el) {
+	el.addEventListener('pointerdown', function (ev) {
+		var inputs = Array.from(el.parentNode.parentNode.getElementsByTagName("input"));
+		inputs.forEach(function (inp) {
+			inp.checked = !inp.checked;
+		});
+	});
+});
+avgDiv.addEventListener('pointerdown', function (ev) {
+	total = 0;
+	attempts = 0;
+	avgDiv.children[0].innerHTML = "ATTEMPTS:<br>AVG: ";
+});
 document.addEventListener("contextmenu", function (e) {
 	e.preventDefault();
 });
