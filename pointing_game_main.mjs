@@ -216,8 +216,7 @@ LETS_TRY_2.forEach(function (title) {
 wrong.src = "wrong.mp3";
 correct.src = "correct.mp3";
 document.addEventListener('contextmenu', event => event.preventDefault());
-backDiv.addEventListener('pointerdown', function (ev) {
-	console.log("backDiv tapped");
+backDiv.addEventListener('pointerup', function (ev) {
 	gameDiv.style.display = "none";
 	setTimeout(function delayShowMenu() {
 		menuDiv.style.display = "block";
