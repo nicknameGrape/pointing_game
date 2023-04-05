@@ -219,8 +219,9 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 backDiv.addEventListener('pointerdown', function (ev) {
 	console.log("backDiv tapped");
 	gameDiv.style.display = "none";
-	menuDiv.style.display = "block";
-	ev.stopPropagation();
+	setTimeout(function delayShowMenu() {
+		menuDiv.style.display = "block";
+	}, 1);
 });
 Array.from(document.getElementsByClassName("invert")).forEach(function (el) {
 	el.addEventListener('pointerdown', function (ev) {
