@@ -4,6 +4,15 @@
 	<link rel="icon" type="image/png" href="/favicon.png">
 	<link rel="stylesheet" href="pointing_game_stylesheet.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C5MPB2T6KH"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-C5MPB2T6KH');
+</script>
 <body>
 	<div id="menu">
 		<div id="top">
@@ -13,37 +22,34 @@
 			<div id="title"></div>
 		</div>
 		<div id="instructions"><span>Choose one or more sets of words, then press "start" below.</span></div>
+		<div id="sets">
+			<span class="setName general" id="tab_general">
+				General
+				<button class="invert" style="visibility:visible">INVERT</button>
+			</span>
+			<span class="setName lets_try_1" id="tab_lets_try_1">
+				Let's Try 1
+				<button class="invert">INVERT</button>
+			</span>
+			<span class="setName lets_try_2" id="tab_lets_try_2">
+				Let's Try 2
+				<button class="invert">INVERT</button>
+			</span>
+			<span class="setName junior_sunshine_5" id="tab_junior_sunshine_5">
+				Junior Sunshine 5
+				<button class="invert">INVERT</button>
+			</span>
+			<span class="setName junior_sunshine_6" id="tab_junior_sunshine_6">
+				Junior Sunshine 6
+				<button class="invert">INVERT</button>
+			</span>
+		</div>
 		<div id="modules">
-			<div class="set"  id="general">
-				<span class="setName">
-					General
-					<button class="invert">INVERT</button>
-				</span>
-				<div class="setItems"></div>
-			</div>
-			<div class="set"  id="lets_try_1">
-				<span class="setName">
-					Let's Try 1
-					<button class="invert">INVERT</button>
-				</span>
-				<div class="setItems"></div>
-			</div>
-			<div class="set"  id="lets_try_2">
-				<span class="setName">
-					Let's Try 2
-					<button class="invert">INVERT</button>
-				</span>
-				<div class="setItems"></div>
-			</div>
-			<!--
-			<div class="set"  id="junior_sunshine_5">
-				<span class="setName">
-					Junior Sunshine 5/6
-					<button class="invert">INVERT</button>
-				</span>
-				<span><emph>Coming Soon...</emph></span>
-			</div>
-			--!>
+			<div class="set general" id="general"></div>
+			<div class="set lets_try_1" id="lets_try_1" style="display:none"></div>
+			<div class="set lets_try_2" id="lets_try_2" style="display:none"></div>
+			<div class="set junior_sunshine_5" id="junior_sunshine_5" style="display:none"></div>
+			<div class="set junior_sunshine_6" id="junior_sunshine_6" style="display:none"></div>
 		</div>
 		<div id="start">START</div>
 	</div>

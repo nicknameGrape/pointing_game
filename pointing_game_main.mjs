@@ -109,9 +109,11 @@ function onclick() {
 
 var TIME_LIMIT = 10;
 var MAX_POINTS = 1000;
-var GENERAL = ["Fruits", "Vegetables", "Foods", "Body Parts", "Colors", "ABC -> ABC", "abc -> ABC", "1-12", "1-20", "100-9900", "Weather", "Days", "Months", "Dates", "Stationery", "My Room", "Subjects", "Buildings", "Jobs", "Countries", "Opposites"];
+var GENERAL = ["Fruits", "Vegetables", "Foods", "Body Parts", "Colors", "ABC → ABC", "abc → ABC", "1-12", "1-20", "100-9900", "Weather", "Days", "Months", "Dates", "Stationery", "My Room", "Subjects", "Buildings", "Jobs", "Countries", "Opposites"];
 var LETS_TRY_1 = ["Greetings", "How are you?", "1-20", "Colors", "Categories", "ABC -> ABC", "Colored Shapes", "White Rabbit"];
 var LETS_TRY_2 = ["Greetings", "Weather", "Let's Play", "Days", "Time", "Study Time", "Stationery", "abc -> ABC", "Vegetables", "At the Market", "School Rooms"];
+var JUNIOR_SUNSHINE_5 = ["Months", "Dates", "Days", "Subjects", "Action Verbs", "My Room", "on in under by", "Countries", "Zodiac", "Foods", "Prices", "Famous Foods of Japan", "100-9900"];
+var JUNIOR_SUNSHINE_6 = ["Study Time", "Countries", "Summer Vacation Plan", "Jobs", "School Events"];
 var loader = new Loader("./image_library/images/");
 var lloader = new Loader("./pointing_game_modules/img/");
 var modulesHd;
@@ -123,6 +125,8 @@ var modulesDiv  = document.getElementById("modules");
 var generalDiv  = document.getElementById("general");
 var letsTry1Div  = document.getElementById("lets_try_1");
 var letsTry2Div  = document.getElementById("lets_try_2");
+var juniorSunshine5Div  = document.getElementById("junior_sunshine_5");
+var juniorSunshine6Div  = document.getElementById("junior_sunshine_6");
 var startDiv  = document.getElementById("start");
 var gameDiv  = document.getElementById("game");
 var backDiv  = document.getElementById("back");
@@ -156,20 +160,6 @@ GENERAL.sort(function (oa, ob) {
 	}
 	return 0;
 });
-//modules.forEach(function (m) {
-//	var unit = document.createElement("div");
-//	var input = document.createElement("input");
-//	var label = document.createElement("label");
-//	input.type = "checkbox";
-//	input.id = m.title;
-//	label.htmlFor = m.title;
-//	label.innerHTML = m.title;
-//	unit.appendChild(input);
-//	unit.appendChild(label);
-//	if (GENERAL.includes(m.title)) {
-//		generalDiv.children[1].appendChild(unit.cloneNode(true));
-//	}
-//});
 GENERAL.forEach(function (title) {
 	var unit = document.createElement("div");
 	var input = document.createElement("input");
@@ -181,7 +171,7 @@ GENERAL.forEach(function (title) {
 	label.innerHTML = title;
 	unit.appendChild(input);
 	unit.appendChild(label);
-	generalDiv.children[1].appendChild(unit);
+	generalDiv.appendChild(unit);
 });
 LETS_TRY_1.forEach(function (title) {
 	if (modules.map(function (o) {return o.title;}).includes(title)) {
@@ -195,7 +185,7 @@ LETS_TRY_1.forEach(function (title) {
 		label.innerHTML = title;
 		unit.appendChild(input);
 		unit.appendChild(label);
-		letsTry1Div.children[1].appendChild(unit);
+		letsTry1Div.appendChild(unit);
 	}
 });
 LETS_TRY_2.forEach(function (title) {
@@ -210,7 +200,37 @@ LETS_TRY_2.forEach(function (title) {
 		label.innerHTML = title;
 		unit.appendChild(input);
 		unit.appendChild(label);
-		letsTry2Div.children[1].appendChild(unit);
+		letsTry2Div.appendChild(unit);
+	}
+});
+JUNIOR_SUNSHINE_5.forEach(function (title) {
+	if (modules.map(function (o) {return o.title;}).includes(title)) {
+		var unit = document.createElement("div");
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		input.type = "checkbox";
+		input.id = "js5_" + title;
+		input.mid = title;
+		label.htmlFor = "js5_" + title;
+		label.innerHTML = title;
+		unit.appendChild(input);
+		unit.appendChild(label);
+		juniorSunshine5Div.appendChild(unit);
+	}
+});
+JUNIOR_SUNSHINE_6.forEach(function (title) {
+	if (modules.map(function (o) {return o.title;}).includes(title)) {
+		var unit = document.createElement("div");
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		input.type = "checkbox";
+		input.id = "js6_" + title;
+		input.mid = title;
+		label.htmlFor = "js6_" + title;
+		label.innerHTML = title;
+		unit.appendChild(input);
+		unit.appendChild(label);
+		juniorSunshine6Div.appendChild(unit);
 	}
 });
 wrong.src = "wrong.mp3";
@@ -222,9 +242,25 @@ backDiv.addEventListener('pointerup', function (ev) {
 		menuDiv.style.display = "block";
 	}, 1);
 });
+Array.from(document.getElementsByClassName("setName")).forEach(function (el) {
+	el.addEventListener('pointerdown', function (ev) {
+		var showMe = document.getElementById(el.id.slice(4));
+		var invertBtn = this.children[0];
+		Array.from(this.parentElement.children).forEach(function (sn) {
+			var hideMe = document.getElementById(sn.id.slice(4));
+			var invertBtn = sn.children[0];
+			hideMe.style.display = "none";
+			invertBtn.style.visibility = "hidden";
+		});
+		showMe.style.display = "flex";
+		invertBtn.style.visibility = "visible";
+	});
+});
 Array.from(document.getElementsByClassName("invert")).forEach(function (el) {
 	el.addEventListener('pointerdown', function (ev) {
-		var inputs = Array.from(el.parentNode.parentNode.getElementsByTagName("input"));
+		var mySet = document.getElementById(this.parentNode.id.slice(4));
+		var inputs = Array.from(mySet.getElementsByTagName("input"));
+		console.log(inputs);
 		inputs.forEach(function (inp) {
 			inp.checked = !inp.checked;
 		});

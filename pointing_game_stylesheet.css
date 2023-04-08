@@ -45,8 +45,29 @@ body {
 	align-items: center;
 }
 
+#sets {
+	height: 10%;
+	width: 100%;
+	background: lavender;
+	display: flex;
+	font-size: .6em;
+}
+
+.setName {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 5%;
+	font-size: 1.5em;
+}
+
+.invert {
+	visibility: hidden;
+}
+
 #modules {
-	height: 50%;
+	height: 40%;
 	width: 100%;
 	background: lavender;
 	display: flex;
@@ -55,53 +76,42 @@ body {
 
 .set {
 	display: flex;
-	flex-direction: column;
-	width: 25%;
-}
-
-.setName {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	column-gap: 5%;
-	font-size: 1.5em;
-}
-
-.allNone {
-}
-
-.setItems {
-	display: flex;
-	height: 90%;
+	height: 100%;
+	width: 100%;
 	flex-direction: column;
 	flex-wrap: wrap;
 	row-gap: 1%;
 	column-gap: 3%;
+	padding: 1em 5% 0 5%;
+}
+
+.set div {
+	flex: 0 0 auto;
+	margin: 5px;
 }
 
 label {
 	font-size: 1em;
 }
 
-#general {
+.general {
+	background: lightyellow;
+}
+
+.lets_try_1 {
 	background: pink;
-	width: 50%;
 }
 
-#lets_try_1 {
-	background: lightYellow;
+.lets_try_2 {
+	background: mediumaquamarine;
 }
 
-#lets_try_2 {
+.junior_sunshine_5 {
 	background: orange;
 }
 
-#junior_sunshine_5 {
-	background: red;
-}
-
-#junior_sunshine_6 {
-	background: purple;
+.junior_sunshine_6 {
+	background: limegreen;
 }
 
 #start {
