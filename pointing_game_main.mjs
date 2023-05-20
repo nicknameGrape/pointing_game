@@ -77,6 +77,7 @@ function onclick() {
 			grandTotal += toAdd;
 			totalDiv.children[1].innerHTML = grandTotal;
 			attempts += 1;
+			console.log(avgDiv);
 			avgDiv.children[0].innerHTML = "ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
 			countingDown = false;
 			againTimeout = setTimeout(function () {
@@ -94,7 +95,8 @@ function onclick() {
 			if (tries === 3) {
 				cancelAnimationFrame(animationRequest);
 				attempts += 1;
-				avgDiv.innerHTML = "ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
+				avgDiv.children[0].innerHTML = "ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
+				//avgDiv.innerHTML = "ATTEMPTS: " + attempts + "<br>AVG: " + Math.round(total/attempts);
 				toAdd = 0;
 				toAddDiv.children[0].innerHTML = toAdd;
 				countingDown = false;
