@@ -3,6 +3,131 @@ import Loader from "./js_modules/Loader.mjs";
 import modules from "./pointing_game_modules.mjs";
 import image_library from "./image_library/image_library.mjs";
 
+function setup() {
+	wrong.src = "wrong.mp3";
+	correct.src = "correct.mp3";
+	GENERAL.sort(function (oa, ob) {
+		var titlea = oa.toUpperCase();
+		var titleb = ob.toUpperCase();
+		if (titlea < titleb) {
+			return -1;
+		}
+		if (titlea > titleb) {
+			return 1;
+		}
+		return 0;
+	});
+	GENERAL.forEach(function (title) {
+		var unit = document.createElement("div");
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		input.type = "checkbox";
+		input.id = "general_" + title;
+		input.mid = title;
+		label.htmlFor = "general_" + title;
+		label.innerHTML = title;
+		unit.appendChild(input);
+		unit.appendChild(label);
+		generalDiv.appendChild(unit);
+	});
+	LETS_TRY_1.forEach(function (title) {
+		if (modules.map(function (o) {return o.title;}).includes(title)) {
+			var unit = document.createElement("div");
+			var input = document.createElement("input");
+			var label = document.createElement("label");
+			input.type = "checkbox";
+			input.id = "lt1_" + title;
+			input.mid = title;
+			label.htmlFor = "lt1_" + title;
+			label.innerHTML = title;
+			unit.appendChild(input);
+			unit.appendChild(label);
+			letsTry1Div.appendChild(unit);
+		}
+	});
+	LETS_TRY_2.forEach(function (title) {
+		if (modules.map(function (o) {return o.title;}).includes(title)) {
+			var unit = document.createElement("div");
+			var input = document.createElement("input");
+			var label = document.createElement("label");
+			input.type = "checkbox";
+			input.id = "lt2_" + title;
+			input.mid = title;
+			label.htmlFor = "lt2_" + title;
+			label.innerHTML = title;
+			unit.appendChild(input);
+			unit.appendChild(label);
+			letsTry2Div.appendChild(unit);
+		}
+	});
+	JUNIOR_SUNSHINE_5.forEach(function (title) {
+		if (modules.map(function (o) {return o.title;}).includes(title)) {
+			var unit = document.createElement("div");
+			var input = document.createElement("input");
+			var label = document.createElement("label");
+			input.type = "checkbox";
+			input.id = "js5_" + title;
+			input.mid = title;
+			label.htmlFor = "js5_" + title;
+			label.innerHTML = title;
+			unit.appendChild(input);
+			unit.appendChild(label);
+			juniorSunshine5Div.appendChild(unit);
+		}
+	});
+	JUNIOR_SUNSHINE_6.forEach(function (title) {
+		if (modules.map(function (o) {return o.title;}).includes(title)) {
+			var unit = document.createElement("div");
+			var input = document.createElement("input");
+			var label = document.createElement("label");
+			input.type = "checkbox";
+			input.id = "js6_" + title;
+			input.mid = title;
+			label.htmlFor = "js6_" + title;
+			label.innerHTML = title;
+			unit.appendChild(input);
+			unit.appendChild(label);
+			juniorSunshine6Div.appendChild(unit);
+		}
+	});
+	if (localStorage.getItem("activeTab") !== null) {
+		storage.activeTab = localStorage.getItem("activeTab");
+	}
+	if (localStorage.getItem("checkboxes") !== null) {
+		storage.checkboxes = JSON.parse(localStorage.getItem("checkboxes"));
+	} else {
+		Array.from(document.getElementsByTagName("input")).forEach(function (el) {
+			storage.checkboxes[el.id] = el.checked;
+		});
+		localStorage.setItem("checkboxes", JSON.stringify(storage.checkboxes));
+	}
+	console.log(storage, localStorage);
+	if (storage.activeTab !== null) {
+		setActiveTab(document.getElementById(storage.activeTab));
+	}
+	if (storage.checkboxes !== null) {
+		Object.entries(storage.checkboxes).forEach(function (entry) {
+			let el = document.getElementById(entry[0]);
+			el.checked = entry[1];
+		});
+	}
+}
+
+function setActiveTab(tab) {
+	var showMe = document.getElementById(tab.id.slice(4));
+	var invertBtn = tab.children[0];
+	Array.from(tab.parentElement.children).forEach(function (sn) {
+		var hideMe = document.getElementById(sn.id.slice(4));
+		var invertBtn = sn.children[0];
+		hideMe.style.display = "none";
+		invertBtn.style.visibility = "hidden";
+	});
+	showMe.style.display = "flex";
+	invertBtn.style.visibility = "visible";
+	storage.activeTab = tab.id;
+	localStorage.setItem("activeTab", tab.id);
+}
+
 function animateToAdd() {
 	var now = performance.now();
 	var elapsed = now  - startTime;
@@ -15,7 +140,6 @@ function newQuiz() {
 	if (!countingDown) {
 		clearTimeout(againTimeout);
 		var module = modulesHd.drawOne().module;
-		console.log
 		quiz = module.hd.drawOne();
 		hintDiv.innerHTML = quiz.value;
 		while (buttonsDiv.firstChild) {
@@ -115,7 +239,7 @@ var GENERAL = ["Fruits", "Vegetables", "Foods", "How are you?", "Body Parts", "C
 var LETS_TRY_1 = ["Greetings", "How are you?", "1-20", "Colors", "Categories", "ABC -> ABC", "Colored Shapes", "White Rabbit"];
 var LETS_TRY_2 = ["Greetings", "Weather", "Let's Play", "Days", "Time", "Study Time", "Stationery", "abc -> ABC", "Vegetables", "At the Market", "School Rooms"];
 var JUNIOR_SUNSHINE_5 = ["Months", "Dates", "Days", "Subjects", "Action Verbs", "My Room", "on in under by", "Countries", "Zodiac", "Foods", "Prices", "Famous Foods of Japan", "100-9900"];
-var JUNIOR_SUNSHINE_6 = ["Study Time", "Countries", "Summer Vacation Plan", "Jobs", "School Events"];
+var JUNIOR_SUNSHINE_6 = ["Study Time", "Countries", "World Wonders", "Welcome to Japan", "Summer Vacation Plan", "Jobs", "School Events"];
 var loader = new Loader("./image_library/images/");
 var lloader = new Loader("./pointing_game_modules/img/");
 var modulesHd;
@@ -149,94 +273,12 @@ var animationRequest, startTime;
 var wrong = document.createElement("audio");
 var correct = document.createElement("audio");
 var againTimeout;
-titleDiv.innerHTML = "Pointing Game";
+var storage = {
+	"activeTab": null,
+	"checkboxes": {}
+}
+setup();
 startDiv.onclick = start;
-GENERAL.sort(function (oa, ob) {
-	var titlea = oa.toUpperCase();
-	var titleb = ob.toUpperCase();
-	if (titlea < titleb) {
-		return -1;
-	}
-	if (titlea > titleb) {
-		return 1;
-	}
-	return 0;
-});
-GENERAL.forEach(function (title) {
-	var unit = document.createElement("div");
-	var input = document.createElement("input");
-	var label = document.createElement("label");
-	input.type = "checkbox";
-	input.id = "general_" + title;
-	input.mid = title;
-	label.htmlFor = "general_" + title;
-	label.innerHTML = title;
-	unit.appendChild(input);
-	unit.appendChild(label);
-	generalDiv.appendChild(unit);
-});
-LETS_TRY_1.forEach(function (title) {
-	if (modules.map(function (o) {return o.title;}).includes(title)) {
-		var unit = document.createElement("div");
-		var input = document.createElement("input");
-		var label = document.createElement("label");
-		input.type = "checkbox";
-		input.id = "lt1_" + title;
-		input.mid = title;
-		label.htmlFor = "lt1_" + title;
-		label.innerHTML = title;
-		unit.appendChild(input);
-		unit.appendChild(label);
-		letsTry1Div.appendChild(unit);
-	}
-});
-LETS_TRY_2.forEach(function (title) {
-	if (modules.map(function (o) {return o.title;}).includes(title)) {
-		var unit = document.createElement("div");
-		var input = document.createElement("input");
-		var label = document.createElement("label");
-		input.type = "checkbox";
-		input.id = "lt2_" + title;
-		input.mid = title;
-		label.htmlFor = "lt2_" + title;
-		label.innerHTML = title;
-		unit.appendChild(input);
-		unit.appendChild(label);
-		letsTry2Div.appendChild(unit);
-	}
-});
-JUNIOR_SUNSHINE_5.forEach(function (title) {
-	if (modules.map(function (o) {return o.title;}).includes(title)) {
-		var unit = document.createElement("div");
-		var input = document.createElement("input");
-		var label = document.createElement("label");
-		input.type = "checkbox";
-		input.id = "js5_" + title;
-		input.mid = title;
-		label.htmlFor = "js5_" + title;
-		label.innerHTML = title;
-		unit.appendChild(input);
-		unit.appendChild(label);
-		juniorSunshine5Div.appendChild(unit);
-	}
-});
-JUNIOR_SUNSHINE_6.forEach(function (title) {
-	if (modules.map(function (o) {return o.title;}).includes(title)) {
-		var unit = document.createElement("div");
-		var input = document.createElement("input");
-		var label = document.createElement("label");
-		input.type = "checkbox";
-		input.id = "js6_" + title;
-		input.mid = title;
-		label.htmlFor = "js6_" + title;
-		label.innerHTML = title;
-		unit.appendChild(input);
-		unit.appendChild(label);
-		juniorSunshine6Div.appendChild(unit);
-	}
-});
-wrong.src = "wrong.mp3";
-correct.src = "correct.mp3";
 document.addEventListener('contextmenu', event => event.preventDefault());
 backDiv.addEventListener('pointerup', function (ev) {
 	gameDiv.style.display = "none";
@@ -245,27 +287,24 @@ backDiv.addEventListener('pointerup', function (ev) {
 	}, 1);
 });
 Array.from(document.getElementsByClassName("setName")).forEach(function (el) {
-	el.addEventListener('pointerdown', function (ev) {
-		var showMe = document.getElementById(el.id.slice(4));
-		var invertBtn = this.children[0];
-		Array.from(this.parentElement.children).forEach(function (sn) {
-			var hideMe = document.getElementById(sn.id.slice(4));
-			var invertBtn = sn.children[0];
-			hideMe.style.display = "none";
-			invertBtn.style.visibility = "hidden";
-		});
-		showMe.style.display = "flex";
-		invertBtn.style.visibility = "visible";
-	});
+	el.addEventListener('pointerdown', function (ev) {setActiveTab(ev.target);});
 });
 Array.from(document.getElementsByClassName("invert")).forEach(function (el) {
 	el.addEventListener('pointerdown', function (ev) {
 		var mySet = document.getElementById(this.parentNode.id.slice(4));
 		var inputs = Array.from(mySet.getElementsByTagName("input"));
-		console.log(inputs);
 		inputs.forEach(function (inp) {
 			inp.checked = !inp.checked;
+			storage.checkboxes[inp.id] = inp.checked;
+			localStorage.setItem("checkboxes", JSON.stringify(storage.checkboxes));
 		});
+	});
+});
+Array.from(document.getElementsByTagName("input")).forEach(function (el) {
+	el.addEventListener('change', function (ev) {
+		let t = ev.target;
+		storage.checkboxes[t.id] = t.checked;
+		localStorage.setItem("checkboxes", JSON.stringify(storage.checkboxes));
 	});
 });
 avgDiv.addEventListener('pointerdown', function (ev) {

@@ -33,6 +33,8 @@ import mThousands from "./pointing_game_modules/pointing_module_thousands.mjs"
 import mAdjectivesG3 from "./pointing_game_modules/pointing_module_adjectives_g3.mjs"
 import mAdjectivesG5 from "./pointing_game_modules/pointing_module_adjectives_g5.mjs"
 import mFeelings from "./pointing_game_modules/pointing_module_feelings.mjs"
+import mJapan from "./pointing_game_modules/pointing_module_japanese_attractions.mjs"
+import mWorld from "./pointing_game_modules/pointing_module_world_attractions.mjs"
 var modules = [
 	{"title": "Fruits", "module": mFruits},
 	{"title": "Vegetables", "module": mVegetables},
@@ -68,6 +70,8 @@ var modules = [
 	{"title": "School Rooms", "module": mSchoolRooms},
 	{"title": "White Rabbit", "module": mAdjectivesG3},
 	{"title": "Opposites", "module": mAdjectivesG5},
-	{"title": "How are you?", "module": mFeelings}
+	{"title": "How are you?", "module": mFeelings},
+	{"title": "Welcome to Japan", "module": mJapan},
+	{"title": "World Wonders", "module": mWorld}
 ];
 export default modules
