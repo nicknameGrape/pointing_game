@@ -36,6 +36,7 @@ import mFeelings from "./pointing_game_modules/pointing_module_feelings.mjs"
 import mJapan from "./pointing_game_modules/pointing_module_japanese_attractions.mjs"
 import mWorld from "./pointing_game_modules/pointing_module_world_attractions.mjs"
 import mLets from "./pointing_game_modules/pointing_module_lets_play.mjs"
+import mColorfulFruits from "./pointing_game_modules/pointing_module_colorful_fruits.mjs"
 var modules = [
 	{"title": "Fruits", "module": mFruits},
 	{"title": "Vegetables", "module": mVegetables},
@@ -74,6 +75,7 @@ var modules = [
 	{"title": "How are you?", "module": mFeelings},
 	{"title": "Welcome to Japan", "module": mJapan},
 	{"title": "World Wonders", "module": mWorld},
-	{"title": "Let's play!", "module": mLets}
+	{"title": "Let's play!", "module": mLets},
+	{"title": "Colorful Fruits", "module": mColorfulFruits}
 ];
 export default modules
