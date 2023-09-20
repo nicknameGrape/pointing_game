@@ -37,6 +37,7 @@ import mJapan from "./pointing_game_modules/pointing_module_japanese_attractions
 import mWorld from "./pointing_game_modules/pointing_module_world_attractions.mjs"
 import mLets from "./pointing_game_modules/pointing_module_lets_play.mjs"
 import mColorfulFruits from "./pointing_game_modules/pointing_module_colorful_fruits.mjs"
+import mClock from "./pointing_game_modules/pointing_module_clock.mjs"
 var modules = [
 	{"title": "Fruits", "module": mFruits},
 	{"title": "Vegetables", "module": mVegetables},
@@ -76,6 +77,7 @@ var modules = [
 	{"title": "Welcome to Japan", "module": mJapan},
 	{"title": "World Wonders", "module": mWorld},
 	{"title": "Let's play!", "module": mLets},
-	{"title": "Colorful Fruits", "module": mColorfulFruits}
+	{"title": "Colorful Fruits", "module": mColorfulFruits},
+	{"title": "Digital Clock", "module": mClock}
 ];
 export default modules
