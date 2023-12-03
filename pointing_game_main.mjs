@@ -307,6 +307,10 @@ Array.from(document.getElementsByTagName("input")).forEach(function (el) {
 		localStorage.setItem("checkboxes", JSON.stringify(storage.checkboxes));
 	});
 });
+totalDiv.addEventListener('pointerdown', function (ev) {
+	grandTotal = 0;
+	totalDiv.children[1].innerHTML = grandTotal;
+});
 avgDiv.addEventListener('pointerdown', function (ev) {
 	total = 0;
 	attempts = 0;
