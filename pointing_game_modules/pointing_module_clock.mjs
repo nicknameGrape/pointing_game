@@ -25,14 +25,14 @@ function setup() {
 		let words = c.split(":")
 		words = words.map(function (str) {
 			let word = numberToWords.toWords(parseInt(str));
-			if (word === "five") {
-				word = "oh five";
-			}
 			if (word === "zero") {
 				word = "o'clock";
 			}
 			return word;
 		});
+		if (words[1] === "five") {
+			words[1] = "oh five";
+		}
 		console.log(words);
 		hintCanvas.value = words.join(" ");
 		hintCanvas.classList.add("choice");
