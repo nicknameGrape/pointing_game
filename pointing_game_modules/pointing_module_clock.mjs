@@ -25,6 +25,9 @@ function setup() {
 		let words = c.split(":")
 		words = words.map(function (str) {
 			let word = numberToWords.toWords(parseInt(str));
+			if (word === "five") {
+				word = "oh five";
+			}
 			if (word === "zero") {
 				word = "o'clock";
 			}
