@@ -3,6 +3,7 @@ body {
 	touch-action: none;
 	font-family: sans-serif;
 	font-size: 5vh;
+	caret-color: transparent;
 }
 
 #menu {

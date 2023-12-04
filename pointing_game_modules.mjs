@@ -38,6 +38,9 @@ import mWorld from "./pointing_game_modules/pointing_module_world_attractions.mj
 import mLets from "./pointing_game_modules/pointing_module_lets_play.mjs"
 import mColorfulFruits from "./pointing_game_modules/pointing_module_colorful_fruits.mjs"
 import mClock from "./pointing_game_modules/pointing_module_clock.mjs"
+import mABC2abc from "./pointing_game_modules/pointing_module_ABC2abc.mjs"
+import mClassroom from "./pointing_game_modules/pointing_module_classroom_places.mjs"
+import mHeShe from "./pointing_game_modules/pointing_module_he_she.mjs"
 var modules = [
 	{"title": "Fruits", "module": mFruits},
 	{"title": "Vegetables", "module": mVegetables},
@@ -45,9 +48,11 @@ var modules = [
 	{"title": "Body Parts", "module": mBodyParts},
 	{"title": "Colors", "module": mColors},
 	{"title": "Colored Shapes", "module": mColoredShapes},
+	{"title": "Classroom", "module": mClassroom},
 	{"title": "Categories", "module": mCategories},
 	{"title": "ABC → ABC", "module": mAZ},
 	{"title": "abc → ABC", "module": maz},
+	{"title": "ABC → abc", "module": mABC2abc},
 	{"title": "1-12", "module": m12},
 	{"title": "1-20", "module": m20},
 	{"title": "100-9900", "module": mThousands},
@@ -67,6 +72,7 @@ var modules = [
 	{"title": "Countries", "module": mCountries},
 	{"title": "Summer Vacation Plan", "module": mSummerVacationPlan},
 	{"title": "Family", "module": mFamily},
+	{"title": "He is, She is", "module": mHeShe},
 	{"title": "Zodiac", "module": mZodiac},
 	{"title": "School Events", "module": mSchoolEvents},
 	{"title": "Famous Foods of Japan", "module": mMeibutsu},
