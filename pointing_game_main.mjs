@@ -142,6 +142,9 @@ function newQuiz() {
 		var module = modulesHd.drawOne().module;
 		quiz = module.hd.drawOne();
 		hintDiv.innerHTML = quiz.value;
+		if (inputSpeak.checked) {
+			speak(quiz.value);
+		}
 		while (buttonsDiv.firstChild) {
 			buttonsDiv.removeChild(buttonsDiv.firstChild);
 		}
@@ -159,6 +162,10 @@ function newQuiz() {
 		tries = 0;
 		startTime = performance.now();
 		animationRequest = requestAnimationFrame(animateToAdd);
+	} else {
+		if (quiz !== null && inputSpeak.checked) {
+			speak(quiz.value);
+		}
 	}
 }
 
@@ -232,6 +239,20 @@ function onclick() {
 	}
 }
 
+function speak(text) {
+	const utterThis = new SpeechSynthesisUtterance(text);
+	utterThis.voice = hdVoices.drawOne();
+	//utterThis.lang = "en-US";
+	synth.speak(utterThis);
+	console.log(synth, utterThis);
+}
+
+function createHdVoices() {
+	let voices = synth.getVoices();
+	let voiceChoices = voices.filter(v => v.lang.includes("en"));
+	console.log(voiceChoices);
+	hdVoices = new HatDraw(voiceChoices);
+}
 
 var TIME_LIMIT = 10;
 var MAX_POINTS = 1000;
@@ -243,7 +264,7 @@ var JUNIOR_SUNSHINE_6 = ["Digital Clock", "Study Time", "Countries", "World Wond
 var loader = new Loader("./image_library/images/");
 var lloader = new Loader("./pointing_game_modules/img/");
 var modulesHd;
-var quiz;
+var quiz = null;
 var menuDiv  = document.getElementById("menu");
 var titleDiv  = document.getElementById("title");
 var instructionsDiv  = document.getElementById("instructions");
@@ -277,7 +298,17 @@ var storage = {
 	"activeTab": null,
 	"checkboxes": {}
 }
+let inputSpeak = document.getElementById("inputSpeak");
+let hdVoices;
 setup();
+//speech
+const synth = window.speechSynthesis;
+if (synth.getVoices().length == 0) {
+	console.log("CHROME");
+	synth.addEventListener("voiceschanged", createHdVoices);
+} else {
+	createHdVoices();
+}
 startDiv.onclick = start;
 document.addEventListener('contextmenu', event => event.preventDefault());
 backDiv.addEventListener('pointerup', function (ev) {
