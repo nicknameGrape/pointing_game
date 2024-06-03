@@ -197,6 +197,7 @@ function onclick() {
 		if (this.value === quiz.value) {
 			console.log("correct!");
 			cancelAnimationFrame(animationRequest);
+			synth.cancel();
 			wrong.pause();
 			correct.pause();
 			correct.currentTime = 0;
@@ -217,6 +218,7 @@ function onclick() {
 		} else {
 			if (this.style.background !== "red") {
 				this.style.background = "red";
+				synth.cancel();
 				wrong.pause();
 				wrong.currentTime = .7;
 				wrong.play();
@@ -240,6 +242,7 @@ function onclick() {
 }
 
 function speak(text) {
+	synth.cancel();
 	const utterThis = new SpeechSynthesisUtterance(text);
 	utterThis.voice = hdVoices.drawOne();
 	//utterThis.lang = "en-US";
