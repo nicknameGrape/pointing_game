@@ -5,6 +5,7 @@ function setup(loader, lloader) {
 	let combos = [];
 	let hints = [];
 	function makeHints() {
+		console.log(hints.length);
 		if (lloader.assetsLoaded) {
 			hints.forEach(function (canvas, index) {
 				let c = combos[index];
