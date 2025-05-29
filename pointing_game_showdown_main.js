@@ -6,7 +6,7 @@ import modules from "./pointing_game_modules.mjs";
 import image_library from "./image_library/image_library.mjs";
 import fitText from "./js_modules/fitText.mjs";
 
-let loader = new Loader("../image_library/images/");
+let loader = new Loader("./image_library/images/");
 let lloader = new Loader("./pointing_game_modules/img/");
 
 function areReady() {
