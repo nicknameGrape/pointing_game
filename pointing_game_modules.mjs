@@ -41,6 +41,7 @@ import mClock from "./pointing_game_modules/pointing_module_clock.mjs"
 import mABC2abc from "./pointing_game_modules/pointing_module_ABC2abc.mjs"
 import mClassroom from "./pointing_game_modules/pointing_module_classroom_places.mjs"
 import mHeShe from "./pointing_game_modules/pointing_module_he_she.mjs"
+import mPersonality from "./pointing_game_modules/pointing_module_personality.mjs"
 var modules = [
 	{"title": "Fruits", "module": mFruits},
 	{"title": "Vegetables", "module": mVegetables},
@@ -73,6 +74,7 @@ var modules = [
 	{"title": "Summer Vacation Plan", "module": mSummerVacationPlan},
 	{"title": "Family", "module": mFamily},
 	{"title": "He is, She is", "module": mHeShe},
+	{"title": "Personality: Strong, Shy, Kind", "module": mPersonality},
 	{"title": "Zodiac", "module": mZodiac},
 	{"title": "School Events", "module": mSchoolEvents},
 	{"title": "Famous Foods of Japan", "module": mMeibutsu},

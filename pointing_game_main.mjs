@@ -259,7 +259,7 @@ function createHdVoices() {
 
 var TIME_LIMIT = 10;
 var MAX_POINTS = 1000;
-var GENERAL = ["Fruits", "Vegetables", "Foods", "How are you?", "Body Parts", "Colors", "Colorful Fruits", "ABC → ABC", "abc → ABC", "ABC → abc", "1-12", "1-20", "100-9900", "Weather", "Days", "Months", "Dates", "Digital Clock", "Classroom", "Stationery", "My Room", "Subjects", "Buildings", "Jobs", "Countries", "Opposites"];
+var GENERAL = ["Fruits", "Vegetables", "Foods", "How are you?", "Body Parts", "Colors", "Colorful Fruits", "ABC → ABC", "abc → ABC", "ABC → abc", "1-12", "1-20", "100-9900", "Weather", "Days", "Months", "Dates", "Digital Clock", "Classroom", "Stationery", "My Room", "Subjects", "Buildings", "Jobs", "Countries", "Opposites", "Personality: Strong, Shy, Kind"];
 var LETS_TRY_1 = ["Greetings", "How are you?", "1-20", "Colors", "Categories", "ABC -> ABC", "Colored Shapes", "White Rabbit"];
 var LETS_TRY_2 = ["Greetings", "Weather", "Let's play!", "Days", "Time", "Study Time", "Stationery", "abc -> ABC", "Vegetables", "At the Market", "School Rooms"];
 var JUNIOR_SUNSHINE_5 = ["Months", "Dates", "Days", "Subjects", "Action Verbs", "Buildings", "My Room", "on in under by", "Countries", "He is, She is", "Zodiac", "Foods", "Prices", "Famous Foods of Japan", "100-9900"];
