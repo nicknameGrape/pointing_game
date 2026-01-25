@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Pointing Game</title>
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<link rel="stylesheet" href="pointing_game_1p_stylesheet.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C5MPB2T6KH"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-C5MPB2T6KH');
+</script>
+<body>
+	<div id="game">
+		<div id="progress">
+			<span id="level">Level: 1</span>
+			<span id="nextLevel">Progress: 0 0 0 0 0</span>
+		</div>
+		<div id="hint">
+			<span id="hintText">Text</span>
+		</div>
+		<div id="buttons"></div>
+	</div>
+	<script type="module" src="pointing_game_1p_main.mjs"></script>
+</body>
+</html>

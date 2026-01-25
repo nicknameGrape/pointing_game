@@ -42,6 +42,7 @@ import mABC2abc from "./pointing_game_modules/pointing_module_ABC2abc.mjs"
 import mClassroom from "./pointing_game_modules/pointing_module_classroom_places.mjs"
 import mHeShe from "./pointing_game_modules/pointing_module_he_she.mjs"
 import mPersonality from "./pointing_game_modules/pointing_module_personality.mjs"
+import mMyDay from "./pointing_game_modules/pointing_module_my_day.mjs"
 var modules = [
 	{"title": "Fruits", "module": mFruits},
 	{"title": "Vegetables", "module": mVegetables},
@@ -86,6 +87,7 @@ var modules = [
 	{"title": "World Wonders", "module": mWorld},
 	{"title": "Let's play!", "module": mLets},
 	{"title": "Colorful Fruits", "module": mColorfulFruits},
-	{"title": "Digital Clock", "module": mClock}
+	{"title": "Digital Clock", "module": mClock},
+	{"title": "My Day", "module": mMyDay}
 ];
 export default modules
