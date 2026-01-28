@@ -31,29 +31,31 @@ function newQuiz() {
 }
 
 function onclick() {
-	if (this.value === quiz.value && canGuess) {
-		canGuess = false;
-		console.log("correct!");
-		synth.cancel();
-		wrong.pause();
-		correct.pause();
-		correct.currentTime = 0;
-		//correct.play();
-		this.style.background = "lime";
-		nextLevel += 1;
-		updateLevelAndProgress();
-		setTimeout(function () {
-			newQuiz();
-		}, 1500);
-	} else {
-		if (this.style.background !== "red") {
-			this.style.background = "red";
+	if (canGuess) {
+		if (this.value === quiz.value && canGuess) {
+			canGuess = false;
+			console.log("correct!");
 			synth.cancel();
 			wrong.pause();
-			wrong.currentTime = .7;
-			//wrong.play();
-			nextLevel = Math.max(nextLevel - 1, 0);
+			correct.pause();
+			correct.currentTime = 0;
+			//correct.play();
+			this.style.background = "lime";
+			nextLevel += 1;
 			updateLevelAndProgress();
+			setTimeout(function () {
+				newQuiz();
+			}, 1500);
+		} else {
+			if (this.style.background !== "red") {
+				this.style.background = "red";
+				synth.cancel();
+				wrong.pause();
+				wrong.currentTime = .7;
+				//wrong.play();
+				nextLevel = Math.max(nextLevel - 1, 0);
+				updateLevelAndProgress();
+			}
 		}
 	}
 }
