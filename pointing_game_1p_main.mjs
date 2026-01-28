@@ -32,7 +32,7 @@ function newQuiz() {
 
 function onclick() {
 	if (canGuess) {
-		if (this.value === quiz.value && canGuess) {
+		if (this.value === quiz.value) {
 			canGuess = false;
 			console.log("correct!");
 			synth.cancel();
