@@ -27,10 +27,12 @@ function newQuiz() {
 		q.onclick = onclick;
 		divButtons.appendChild(q);
 	});
+	canGuess = true;
 }
 
 function onclick() {
-	if (this.value === quiz.value) {
+	if (this.value === quiz.value && canGuess) {
+		canGuess = false;
 		console.log("correct!");
 		synth.cancel();
 		wrong.pause();
@@ -108,6 +110,7 @@ const divButtons = document.getElementById("buttons");
 const spanLevel = document.getElementById("level");
 const spanNextLevel = document.getElementById("nextLevel");
 let quiz = null;
+let canGuess = true;
 let hdVoices;
 let level = 1;
 let nextLevel = 0;
