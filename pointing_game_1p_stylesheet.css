@@ -26,6 +26,7 @@ body {
 
 #nextLevel::before {
 	content: "Next Level:";
+	font-family: sans-serif;
 }
 
 #nextLevel {
