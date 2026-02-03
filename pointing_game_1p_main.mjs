@@ -70,9 +70,9 @@ function updateLevelAndProgress () {
 	for (let i=0;i<5;i++) {
 		console.log(i<nextLevel);
 		if (i<nextLevel) {
-			nextLevelString = nextLevelString.concat("&check;");
+			nextLevelString = nextLevelString.concat("#");
 		} else {
-			nextLevelString = nextLevelString.concat("&minus;");
+			nextLevelString = nextLevelString.concat("_");
 		}
 	}
 	console.log(levelString, nextLevelString);
