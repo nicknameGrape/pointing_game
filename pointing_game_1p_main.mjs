@@ -66,11 +66,11 @@ function updateLevelAndProgress () {
 		nextLevel = 0;
 	}
 	let levelString = "Level: " + level.toString();
-	let nextLevelString = "Next Level: ";
+	let nextLevelString = "";
 	for (let i=0;i<5;i++) {
 		console.log(i<nextLevel);
 		if (i<nextLevel) {
-			nextLevelString = nextLevelString.concat("○");
+			nextLevelString = nextLevelString.concat("&check;");
 		} else {
 			nextLevelString = nextLevelString.concat("-");
 		}
