@@ -16,6 +16,7 @@ body {
 	display: grid;
 	grid-template-rows: 10% 20% 60%;
 	gap: 5%;
+	height: calc(100vh - 40px);
 }
 
 #progress {
