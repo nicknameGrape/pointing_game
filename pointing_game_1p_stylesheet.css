@@ -7,6 +7,11 @@ body {
 	user-select: none;
 }
 
+@font-face {
+    font-family: 'MEXT';
+    src: url('mext.otf') format("opentype");
+}
+
 #game {
 	display: grid;
 	grid-template-rows: auto 1fr 70vh;
@@ -25,7 +30,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: sans-serif;
+	font-family: "MEXT", sans-serif;
 	font-size: 10vh;
 	border: thick outset pink;
 }
