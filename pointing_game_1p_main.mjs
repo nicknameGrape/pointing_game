@@ -72,7 +72,7 @@ function updateLevelAndProgress () {
 		if (i<nextLevel) {
 			nextLevelString = nextLevelString.concat("&check;");
 		} else {
-			nextLevelString = nextLevelString.concat("-");
+			nextLevelString = nextLevelString.concat("&minus;");
 		}
 	}
 	console.log(levelString, nextLevelString);
